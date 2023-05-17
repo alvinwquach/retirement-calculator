@@ -1,4 +1,4 @@
-import { VictoryChart, VictoryLine, VictoryAxis } from "victory";
+import { VictoryChart, VictoryAxis, VictoryBar, VictoryTooltip } from "victory";
 
 interface ChartProps {
   data: { x: number; y: number }[];
@@ -28,7 +28,13 @@ const Chart = ({ data }: ChartProps) => {
           tickValues={tickValues}
           tickFormat={tickFormat}
         />
-        <VictoryLine data={data} x="x" y="y" />
+        <VictoryBar
+          data={data}
+          x="x"
+          y="y"
+          labels={({ datum }) => `Age: ${datum.x}, Savings: ${datum.y}`}
+          labelComponent={<VictoryTooltip />}
+        />
       </VictoryChart>
     </div>
   );
