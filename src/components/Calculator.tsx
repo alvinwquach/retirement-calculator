@@ -48,8 +48,6 @@ const Calculator = () => {
       spendingAmount: retirementData.amountSpent,
       yearsUntilRetirement,
       totalInvestment: retirementData.investmentAmount * yearsUntilRetirement,
-      retirementSavings: data[data.length - 1].y + retirementData.amountSpent,
-      remainingSavings: data[data.length - 1].y,
     });
 
     const dataKey = dataRef.key;
@@ -145,3 +143,4 @@ const Calculator = () => {
 };
 
 export default Calculator;
+
