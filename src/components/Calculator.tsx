@@ -12,8 +12,23 @@ const Calculator = () => {
   const [interestRate, setInterestRate] = useState("");
   const [amountSpent, setAmountSpent] = useState("");
   const [chartData, setChartData] = useState<{ x: number; y: number }[]>([]);
+  const [error, setError] = useState("");
 
   const handleCalculate = () => {
+    const isInputValid =
+      age !== "" &&
+      retirementAge !== "" &&
+      investmentAmount !== "" &&
+      interestRate !== "" &&
+      amountSpent !== "";
+
+    if (!isInputValid) {
+      setError("Please fill out all fields.");
+      return;
+    }
+
+    setError("");
+
     const retirementData = {
       age: parseInt(age),
       retirementAge: parseInt(retirementAge),
@@ -79,6 +94,8 @@ const Calculator = () => {
             value={age}
             onChange={(e) => setAge(e.target.value)}
             inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+            type="number"
+            required
             fullWidth
           />
         </Grid>
@@ -88,6 +105,8 @@ const Calculator = () => {
             value={retirementAge}
             onChange={(e) => setRetirementAge(e.target.value)}
             inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+            type="number"
+            required
             fullWidth
           />
         </Grid>
@@ -97,6 +116,8 @@ const Calculator = () => {
             value={investmentAmount}
             onChange={(e) => setInvestmentAmount(e.target.value)}
             inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+            type="number"
+            required
             fullWidth
           />
         </Grid>
@@ -106,6 +127,8 @@ const Calculator = () => {
             value={interestRate}
             onChange={(e) => setInterestRate(e.target.value)}
             inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+            type="number"
+            required
             fullWidth
           />
         </Grid>
@@ -115,10 +138,14 @@ const Calculator = () => {
             value={amountSpent}
             onChange={(e) => setAmountSpent(e.target.value)}
             inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+            type="number"
+            required
             fullWidth
           />
         </Grid>
         <Grid item xs={12}>
+          {error && <p style={{ color: "red" }}>{error}</p>}
+
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Button
