@@ -5,8 +5,6 @@ interface ChartProps {
 }
 
 const Chart = ({ data }: ChartProps) => {
-  console.log(data);
-
   const tickValues = [
     0, 100000, 200000, 300000, 400000, 500000, 600000, 700000, 800000, 900000,
     1000000,
@@ -20,20 +18,15 @@ const Chart = ({ data }: ChartProps) => {
   };
 
   return (
-    <div style={{ height: "300px", width: "700px" }}>
+    <div style={{ height: "300px" }}>
       <VictoryChart>
         <VictoryAxis
-          label="Age"
           tickValues={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
         />
         <VictoryAxis
           dependentAxis
-          label="Savings"
           tickValues={tickValues}
           tickFormat={tickFormat}
-          style={{
-            axisLabel: { padding: 50 },
-          }}
         />
         <VictoryLine data={data} x="x" y="y" />
       </VictoryChart>
